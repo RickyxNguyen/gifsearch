@@ -2,9 +2,6 @@ from flask import Flask, render_template, request
 import os
 import requests
 import json
-import urllib.request
-import urllib.parse
-import urllib.error
 from dotenv import load_dotenv
 
 app = Flask(__name__)
@@ -41,8 +38,7 @@ def index():
         # This is the url from json.
         url = json_data['results'][i]['media'][0]['gif']['url']
         urls.append(url)
-        # Downloads the gif file.
-        urllib.request.urlretrieve(url, str(i)+'.gif')
+
     print(urls)
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
@@ -51,7 +47,7 @@ def index():
 
 
 @app.route('/trending')
-def index():
+def trending():
     urls = []
     """Return homepage."""
     # TODO: Extract query term from url
@@ -62,22 +58,20 @@ def index():
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        "https://api.tenor.com/v1/trending?q=%s&key=%s&limit=%s" % (params.get('apikey'), 10))
+        "https://api.tenor.com/v1/trending?key=%s&limit=%s" % (params.get('apikey'), 10))
 
     json_data = r.json()
     for i in range(len(json_data['results'])):
         # This is the url from json.
         url = json_data['results'][i]['media'][0]['gif']['url']
         urls.append(url)
-        # Downloads the gif file.
-        urllib.request.urlretrieve(url, str(i)+'.gif')
     print(urls)
 
     return render_template("index.html")
 
 
 @app.route('/random')
-def index():
+def random():
     urls = []
     """Return homepage."""
     # TODO: Extract query term from url
@@ -90,15 +84,14 @@ def index():
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        "https://api.tenor.com/v1/random?q=%s&key=%s&limit=%s" % (params.get('apikey'), 10))
+        "https://api.tenor.com/v1/random?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), 10))
 
     json_data = r.json()
     for i in range(len(json_data['results'])):
         # This is the url from json.
         url = json_data['results'][i]['media'][0]['gif']['url']
         urls.append(url)
-        # Downloads the gif file.
-        urllib.request.urlretrieve(url, str(i)+'.gif')
+
     print(urls)
 
     return render_template("index.html")
