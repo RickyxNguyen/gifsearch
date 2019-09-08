@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+ <!-- TODO: Extend 'base.html' and put content into a block 'body' to match -->
+
+<!-- TODO: Make an HTML form containing a search box and a submit button to add
+    the search term to the query string -->
+
+<!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
+
+<!-- TODO: For each gif, include the 'gif.html' template to display it -->
+{% extends 'base.html' %}
+
+{% block title %}
+Enter Your Info
+{% endblock %}
+
+{% block content %}
+<form action='/compliment'>
+    <p>
+        What gif would you like to search up?
+        <input type="text" name="query" />
+    </p>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
+
+</body>
+</html>
