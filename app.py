@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 import os
 import requests
 import json
@@ -15,7 +15,7 @@ api_consumer_key = os.getenv('TENOR_API_KEY')
 
 # continue a similar pattern until the user makes a selection or starts a new search.
 query = 'panda'
-
+lmt = 9
 
 @app.route('/')
 def index():
@@ -27,11 +27,12 @@ def index():
     # TODO: Make 'params' dict with query term and API key
     params = {
         "query": query,
-        "apikey": api_consumer_key
+        "apikey": api_consumer_key,
+        "link":'https://api.tenor.com/v1/'
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), 9))
+        f"{params.get('link')}search?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), lmt))
 
     json_data = r.json()
     for i in range(len(json_data['results'])):
@@ -54,11 +55,13 @@ def trending():
     # query = request.args.get('query')
 
     params = {
-        "apikey": api_consumer_key
+        "apikey": api_consumer_key,
+        "link":'https://api.tenor.com/v1/'
+
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        "https://api.tenor.com/v1/trending?key=%s&limit=%s" % (params.get('apikey'), 9))
+        f"{params.get('link')}trending?key=%s&limit=%s" % (params.get('apikey'), lmt))
 
     json_data = r.json()
     for i in range(len(json_data['results'])):
@@ -80,11 +83,12 @@ def random():
     # TODO: Make 'params' dict with query term and API key
     params = {
         "query": query,
-        "apikey": api_consumer_key
+        "apikey": api_consumer_key,
+        "link":'https://api.tenor.com/v1/'
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        "https://api.tenor.com/v1/random?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), 9))
+        f"{params.get('link')}random?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), lmt))
 
     json_data = r.json()
     for i in range(len(json_data['results'])):
