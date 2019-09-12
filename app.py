@@ -19,7 +19,7 @@ lmt = 9
 
 @app.route('/')
 def index():
-    urls = []
+    gifs = []
     """Return homepage."""
     # TODO: Extract query term from url
     # query = request.args.get('query')
@@ -37,10 +37,10 @@ def index():
     json_data = r.json()
     for i in range(len(json_data['results'])):
         # This is the url from json.
-        url = json_data['results'][i]['media'][0]['gif']['url']
-        urls.append(url)
+        gif = json_data['results'][i]['media'][0]['gif']['url']
+        gifs.append(gif)
 
-    print(urls)
+    print(gifs)
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
 
@@ -49,7 +49,7 @@ def index():
 
 @app.route('/trending')
 def trending():
-    urls = []
+    gifs = []
     """Return homepage."""
     # TODO: Extract query term from url
     # query = request.args.get('query')
@@ -66,16 +66,16 @@ def trending():
     json_data = r.json()
     for i in range(len(json_data['results'])):
         # This is the url from json.
-        url = json_data['results'][i]['media'][0]['gif']['url']
-        urls.append(url)
-    print(urls)
+        gif = json_data['results'][i]['media'][0]['gif']['url']
+        gifs.append(gif)
+    print(gifs)
 
     return render_template("index.html")
 
 
 @app.route('/random')
 def random():
-    urls = []
+    gifs = []
     """Return homepage."""
     # TODO: Extract query term from url
     # query = request.args.get('query')
@@ -93,10 +93,10 @@ def random():
     json_data = r.json()
     for i in range(len(json_data['results'])):
         # This is the url from json.
-        url = json_data['results'][i]['media'][0]['gif']['url']
-        urls.append(url)
+        gif = json_data['results'][i]['media'][0]['gif']['url']
+        gifs.append(gif)
 
-    print(urls)
+    print(gifs)
 
     return render_template("index.html")
 
