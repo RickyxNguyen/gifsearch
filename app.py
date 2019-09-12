@@ -28,11 +28,12 @@ def index():
     params = {
         "query": query,
         "apikey": api_consumer_key,
-        "link":'https://api.tenor.com/v1/'
+        "link":'https://api.tenor.com/v1/',
+        "lmt":9
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        f"{params.get('link')}search?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), lmt))
+        f"{params.get('link')}search?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), params.get("lmt")))
 
     json_data = r.json()
     for i in range(len(json_data['results'])):
@@ -56,12 +57,14 @@ def trending():
 
     params = {
         "apikey": api_consumer_key,
-        "link":'https://api.tenor.com/v1/'
+        "link":'https://api.tenor.com/v1/',
+        "lmt":9
+
 
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        f"{params.get('link')}trending?key=%s&limit=%s" % (params.get('apikey'), lmt))
+        f"{params.get('link')}trending?key=%s&limit=%s" % (params.get('apikey'), params.get("lmt")))
 
     json_data = r.json()
     for i in range(len(json_data['results'])):
@@ -84,11 +87,12 @@ def random():
     params = {
         "query": query,
         "apikey": api_consumer_key,
-        "link":'https://api.tenor.com/v1/'
+        "link":'https://api.tenor.com/v1/',
+        "lmt":9
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        f"{params.get('link')}random?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), lmt))
+        f"{params.get('link')}random?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), params.get('lmt')))
 
     json_data = r.json()
     for i in range(len(json_data['results'])):
