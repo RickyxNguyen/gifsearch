@@ -3,7 +3,6 @@ import os
 import requests
 import json
 from dotenv import load_dotenv
-
 app = Flask(__name__)
 
 # refers to application_top
@@ -36,16 +35,16 @@ def index():
         f"{params.get('link')}search?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), params.get("lmt")))
 
     json_data = r.json()
-    for i in range(len(json_data['results'])):
+    for i in range(len(r.json()['results'])):
         # This is the url from json.
-        gif = json_data['results'][i]['media'][0]['gif']['url']
+        gif = r.json()['results'][i]['media'][0]['gif']['url']
         gifs.append(gif)
 
     print(gifs)
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
 
-    return render_template("index.html")
+    return render_template("index.html",gifs=gifs)
 
 
 @app.route('/trending')
@@ -67,13 +66,13 @@ def trending():
         f"{params.get('link')}trending?key=%s&limit=%s" % (params.get('apikey'), params.get("lmt")))
 
     json_data = r.json()
-    for i in range(len(json_data['results'])):
+    for i in range(len(r.json()['results'])):
         # This is the url from json.
-        gif = json_data['results'][i]['media'][0]['gif']['url']
+        gif = r.json()['results'][i]['media'][0]['gif']['url']
         gifs.append(gif)
     print(gifs)
 
-    return render_template("index.html")
+    return render_template("index.html",gifs=gifs)
 
 
 @app.route('/random')
@@ -94,15 +93,14 @@ def random():
     r = requests.get(
         f"{params.get('link')}random?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), params.get('lmt')))
 
-    json_data = r.json()
-    for i in range(len(json_data['results'])):
+    for i in range(len(r.json()['results'])):
         # This is the url from json.
-        gif = json_data['results'][i]['media'][0]['gif']['url']
+        gif = r.json()['results'][i]['media'][0]['gif']['url']
         gifs.append(gif)
 
     print(gifs)
 
-    return render_template("index.html")
+    return render_template("index.html",gifs=gifs)
 
 
 if __name__ == '__main__':
