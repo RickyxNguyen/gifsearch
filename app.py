@@ -29,7 +29,7 @@ def index():
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        f"{params.get('link')}search?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), params.get("lmt")))
+        f"{params['link']}search?q={params['query']}&key={params['apikey']}&limit={params['lmt']}")
 
     if r.status_code ==200:
         gifs = json.loads(r.content)['results']
@@ -58,8 +58,7 @@ def trending():
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        f"{params.get('link')}trending?key=%s&limit=%s" % (params.get('apikey'), params.get("lmt")))
-
+        f"{params.get('link')}trending?key={params['apikey']}&limit={params['lmt']}")
     if r.status_code ==200:
         gifs = json.loads(r.content)['results']
     else:
@@ -84,7 +83,7 @@ def random():
     }
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
-        f"{params.get('link')}random?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), params.get('lmt')))
+        f"{params['link']}random?q={params['query']}&key={params['apikey']}&limit={params['lmt']}")
 
     if r.status_code ==200:
         gifs = json.loads(r.content)['results']
