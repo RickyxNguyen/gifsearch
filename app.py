@@ -63,8 +63,6 @@ def trending():
         gifs = json.loads(r.content)['results']
     else:
         gifs = None
-    print(gifs)
-
     return render_template("index.html",gifs=gifs)
 
 
@@ -89,9 +87,6 @@ def random():
         gifs = json.loads(r.content)['results']
     else:
         gifs = None
-
-    print(gifs)
-
     return render_template("index.html", query=query ,gifs=gifs)
 
 
