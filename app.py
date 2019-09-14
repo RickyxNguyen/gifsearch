@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 import os
 import requests
 import json
@@ -13,15 +13,12 @@ load_dotenv(dotenv_path)
 api_consumer_key = os.getenv('TENOR_API_KEY')
 
 # continue a similar pattern until the user makes a selection or starts a new search.
-query = 'panda'
-lmt = 9
 
 @app.route('/')
 def index():
-    gifs = []
     """Return homepage."""
     # TODO: Extract query term from url
-    # query = request.args.get('query')
+    query = request.args.get('query')
 
     # TODO: Make 'params' dict with query term and API key
     params = {
@@ -34,22 +31,20 @@ def index():
     r = requests.get(
         f"{params.get('link')}search?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), params.get("lmt")))
 
-    json_data = r.json()
-    for i in range(len(r.json()['results'])):
-        # This is the url from json.
-        gif = r.json()['results'][i]['media'][0]['gif']['url']
-        gifs.append(gif)
+    if r.status_code ==200:
+        gifs = json.loads(r.content)['results']
+    else:
+        gifs = None
 
-    print(gifs)
+    # print(gifs)
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
 
-    return render_template("index.html",gifs=gifs)
+    return render_template("index.html", query=query, gifs=gifs)
 
 
 @app.route('/trending')
 def trending():
-    gifs = []
     """Return homepage."""
     # TODO: Extract query term from url
     # query = request.args.get('query')
@@ -65,11 +60,10 @@ def trending():
     r = requests.get(
         f"{params.get('link')}trending?key=%s&limit=%s" % (params.get('apikey'), params.get("lmt")))
 
-    json_data = r.json()
-    for i in range(len(r.json()['results'])):
-        # This is the url from json.
-        gif = r.json()['results'][i]['media'][0]['gif']['url']
-        gifs.append(gif)
+    if r.status_code ==200:
+        gifs = json.loads(r.content)['results']
+    else:
+        gifs = None
     print(gifs)
 
     return render_template("index.html",gifs=gifs)
@@ -77,10 +71,9 @@ def trending():
 
 @app.route('/random')
 def random():
-    gifs = []
     """Return homepage."""
     # TODO: Extract query term from url
-    # query = request.args.get('query')
+    query = request.args.get('query')
 
     # TODO: Make 'params' dict with query term and API key
     params = {
@@ -93,14 +86,14 @@ def random():
     r = requests.get(
         f"{params.get('link')}random?q=%s&key=%s&limit=%s" % (params.get('query'), params.get('apikey'), params.get('lmt')))
 
-    for i in range(len(r.json()['results'])):
-        # This is the url from json.
-        gif = r.json()['results'][i]['media'][0]['gif']['url']
-        gifs.append(gif)
+    if r.status_code ==200:
+        gifs = json.loads(r.content)['results']
+    else:
+        gifs = None
 
     print(gifs)
 
-    return render_template("index.html",gifs=gifs)
+    return render_template("index.html", query=query ,gifs=gifs)
 
 
 if __name__ == '__main__':

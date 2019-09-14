@@ -15,19 +15,13 @@
 
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
 {% extends 'base.html' %}
-
-{% block title %}
-Enter Your Info
-{% endblock %}
-
 {% block content %}
-<form action='/compliment'>
-    <p>
-        What gif would you like to search up?
-        <input type="text" name="query" />
-    </p>
-    <button type="submit">Submit</button>
+<form action="/">
+    <input type="text" placeholder="Search GIFs" name="query"><button type="submit">Search</button>
 </form>
+{%for gif in gifs%}
+{% include 'gif.html'%}
+{%endfor%}
 {% endblock %}
 
 </body>
