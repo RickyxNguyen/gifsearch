@@ -16,29 +16,97 @@
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
 {% extends 'base.html' %}
 {% block search %}
-<form>
-    <div class="form-group mx-5">
-        <input type="text" class="form-control" id="input-search" placeholder="Search here for GIFs!" name="query">
+<div class="container">
+    <div class="row mb-4">
+        <div class="col"></div>
+        <div class="col">
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="input-search" placeholder="Search here for GIFs!" name="query">
+                </div>
+                <div class="text-center">
+                    <button type="submit" formaction="/" class="btn btn-primary btn-lg btn-dark">Search</button>
+                    <button type="submit" formaction="/trending" class="btn btn-primary btn-lg btn-dark">Trending</button>
+                    <button type="submit" formaction="/random" class="btn btn-primary btn-lg btn-dark">Random</button>
+                </div>
+            </form>
+        </div>
+        <div class="col"></div>
     </div>
-    <div class="text-center">
-        <button type="submit" formaction="/" class="btn btn-primary btn-lg btn-dark">Search</button>
-        <button type="submit" formaction="/trending" class="btn btn-primary btn-lg btn-dark">Trending</button>
-        <button type="submit" formaction="/random" class="btn btn-primary btn-lg btn-dark">Random</button>
-    </div>
-</form>
+</div>
 {% endblock %}
 
 {% block gifs %}
 <div class="container">
-    <div class="row">
-        <div class="col-sm">
+    <div class="row mx-5">
+        <div class="row mb-4">
+            <div class="col">
+                {% for gif in gifs %}
+                    {% if loop.index == 1 %}
+                        {% include 'gif.html'%}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col">
+                {% for gif in gifs %}
+                    {% if loop.index == 2 %}
+                        {% include 'gif.html'%}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col">
+                {% for gif in gifs %}
+                    {% if loop.index == 3 %}
+                        {% include 'gif.html'%}
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
-        <div class="col-sm">
-            {% for gif in gifs %}
-            {% include 'gif.html'%}
-            {% endfor %}
+        <div class="row mb-4">
+            <div class="col">
+                {% for gif in gifs %}
+                    {% if loop.index == 4 %}
+                        {% include 'gif.html'%}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col">
+                {% for gif in gifs %}
+                    {% if loop.index == 5 %}
+                        {% include 'gif.html'%}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col">
+                {% for gif in gifs %}
+                    {% if loop.index == 6 %}
+                        {% include 'gif.html'%}
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
-        <div class="col-sm">
+        <div class="row">
+            <div class="col">
+                {% for gif in gifs %}
+                    {% if loop.index == 7 %}
+                        {% include 'gif.html'%}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col">
+                {% for gif in gifs %}
+                    {% if loop.index == 8 %}
+                        {% include 'gif.html'%}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col">
+                {% for gif in gifs %}
+                    {% if loop.index == 9 %}
+                        {% include 'gif.html'%}
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
