@@ -1,0 +1,13 @@
+body {
+    background: #5b5b5b !important;
+}
+
+.main-logo {
+    margin: auto;
+    font-family: 'Manjari', sans-serif;
+    color: white;
+    font-size: 72px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+}
