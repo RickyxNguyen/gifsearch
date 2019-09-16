@@ -38,6 +38,9 @@
 
 {% block gifs %}
 <div class="container">
+    {% if gifs|length == 0 %}
+        <h1 style="font-family: 'Manjari', sans-serif; text-align: center; color: white">GIFs not found! Try another search query!</h1>
+    {% endif %}
     <div class="row mx-5">
         <div class="row mb-4">
             <div class="col">
