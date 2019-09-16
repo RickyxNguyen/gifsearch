@@ -15,10 +15,17 @@
 
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
 {% extends 'base.html' %}
-{% block content %}
+{% block search %}
 <form action="/">
-    <input type="text" placeholder="Search GIFs" name="query"><button type="submit">Search</button>
+    <div class="form-group mx-5">
+        <input type="text" class="form-control" id="input-search" placeholder="Search here for GIFs!" name="query">
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg btn-dark">Search</button>
+    </div>
 </form>
+{% endblock %}
+{% block gifs %}
 {%for gif in gifs%}
 {% include 'gif.html'%}
 {%endfor%}
