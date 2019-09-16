@@ -16,19 +16,32 @@
 <!-- TODO: For each gif, include the 'gif.html' template to display it -->
 {% extends 'base.html' %}
 {% block search %}
-<form action="/">
+<form>
     <div class="form-group mx-5">
         <input type="text" class="form-control" id="input-search" placeholder="Search here for GIFs!" name="query">
     </div>
     <div class="text-center">
-        <button type="submit" class="btn btn-primary btn-lg btn-dark">Search</button>
+        <button type="submit" formaction="/" class="btn btn-primary btn-lg btn-dark">Search</button>
+        <button type="submit" formaction="/trending" class="btn btn-primary btn-lg btn-dark">Trending</button>
+        <button type="submit" formaction="/random" class="btn btn-primary btn-lg btn-dark">Random</button>
     </div>
 </form>
 {% endblock %}
+
 {% block gifs %}
-{%for gif in gifs%}
-{% include 'gif.html'%}
-{%endfor%}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+            {% for gif in gifs %}
+            {% include 'gif.html'%}
+            {% endfor %}
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 </body>

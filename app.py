@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request, send_from_directory
 import os
 import requests
 import json
@@ -13,6 +13,9 @@ load_dotenv(dotenv_path)
 api_consumer_key = os.getenv('TENOR_API_KEY')
 
 # continue a similar pattern until the user makes a selection or starts a new search.
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
 def index():
@@ -31,7 +34,7 @@ def index():
     r = requests.get(
         f"{params['link']}search?q={params['query']}&key={params['apikey']}&limit={params['lmt']}")
 
-    if r.status_code ==200:
+    if r.status_code == 200:
         gifs = json.loads(r.content)['results']
     else:
         gifs = None
@@ -59,7 +62,7 @@ def trending():
     # TODO: Make an API call to Tenor using the 'requests' library
     r = requests.get(
         f"{params.get('link')}trending?key={params['apikey']}&limit={params['lmt']}")
-    if r.status_code ==200:
+    if r.status_code == 200:
         gifs = json.loads(r.content)['results']
     else:
         gifs = None
@@ -83,7 +86,7 @@ def random():
     r = requests.get(
         f"{params['link']}random?q={params['query']}&key={params['apikey']}&limit={params['lmt']}")
 
-    if r.status_code ==200:
+    if r.status_code == 200:
         gifs = json.loads(r.content)['results']
     else:
         gifs = None
