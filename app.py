@@ -5,14 +5,17 @@ import json
 from dotenv import load_dotenv
 app = Flask(__name__)
 
-# refers to application_top
+"""
+The code below helps Flask load the "environment" file which contains a parameter telling the Flask server to
+run in developer mode (when a change is made, the server auto reloads the changes) and also contains a parameter
+
+"""
 APP_ROOT = os.path.join(os.path.dirname(__file__), './')
 dotenv_path = os.path.join(APP_ROOT, '.env')
 load_dotenv(dotenv_path)
 
 api_consumer_key = os.getenv('TENOR_API_KEY')
 
-# continue a similar pattern until the user makes a selection or starts a new search.
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico', mimetype='image/vnd.microsoft.icon')
