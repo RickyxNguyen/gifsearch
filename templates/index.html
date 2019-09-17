@@ -18,8 +18,7 @@
 {% block search %}
 <div class="container">
     <div class="row mb-4">
-        <div class="col"></div>
-        <div class="col">
+        <div class="col mx-5">
             <form>
                 <div class="form-group">
                     <input type="text" class="form-control" id="input-search" placeholder="Search here for GIFs!" name="query">
@@ -31,7 +30,6 @@
                 </div>
             </form>
         </div>
-        <div class="col"></div>
     </div>
 </div>
 {% endblock %}
@@ -42,7 +40,7 @@
         <h1 style="font-family: 'Manjari', sans-serif; text-align: center; color: white">GIFs not found! Try another search query!</h1>
     {% endif %}
     <div class="row mx-5">
-        <div class="row mb-4">
+        <div class="row mb-4 animated zoomIn">
             <div class="col">
                 {% for gif in gifs %}
                     {% if loop.index == 1 %}
@@ -65,7 +63,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="row mb-4">
+        <div class="row mb-4 animated zoomIn">
             <div class="col">
                 {% for gif in gifs %}
                     {% if loop.index == 4 %}
@@ -88,7 +86,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="row">
+        <div class="row animated zoomIn">
             <div class="col">
                 {% for gif in gifs %}
                     {% if loop.index == 7 %}
