@@ -41,7 +41,7 @@ def index():
     }
 
     # TODO: Make an API call to Tenor using the 'requests' library
-    r = requests.get("https://api.tenor.com/v1/search?", params=params)
+    r = requests.get("https://api.tenor.com/v1/search?", params)
 
     if r.status_code == 200:
         gifs = json.loads(r.content)['results']
@@ -71,7 +71,7 @@ def trending():
     }
 
     # TODO: Make an API call to Tenor using the 'requests' library
-    r = requests.get("https://api.tenor.com/v1/trending?", params=params)
+    r = requests.get("https://api.tenor.com/v1/trending?", params)
 
     if r.status_code == 200:
         gifs = json.loads(r.content)['results']
@@ -99,7 +99,7 @@ def random():
     }
 
     # TODO: Make an API call to Tenor using the 'requests' library
-    r = requests.get("https://api.tenor.com/v1/random?", params=params)
+    r = requests.get("https://api.tenor.com/v1/random?", params)
 
     if r.status_code == 200:
         gifs = json.loads(r.content)['results']
