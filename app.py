@@ -35,14 +35,13 @@ def index():
 
     # TODO: Make 'params' dict with query term and API key
     params = {
-        "query": query,
         "apikey": api_consumer_key,
-        "link":'https://api.tenor.com/v1/',
-        "lmt":9
+        "q": query,
+        "limit":9
     }
+
     # TODO: Make an API call to Tenor using the 'requests' library
-    r = requests.get(
-        f"{params['link']}search?q={params['query']}&key={params['apikey']}&limit={params['lmt']}")
+    r = requests.get("https://api.tenor.com/v1/search?", params=params)
 
     if r.status_code == 200:
         gifs = json.loads(r.content)['results']
@@ -68,14 +67,12 @@ def trending():
 
     params = {
         "apikey": api_consumer_key,
-        "link":'https://api.tenor.com/v1/',
-        "lmt":9
-
-
+        "limit":9
     }
+
     # TODO: Make an API call to Tenor using the 'requests' library
-    r = requests.get(
-        f"{params.get('link')}trending?key={params['apikey']}&limit={params['lmt']}")
+    r = requests.get("https://api.tenor.com/v1/trending?", params=params)
+
     if r.status_code == 200:
         gifs = json.loads(r.content)['results']
     else:
@@ -96,14 +93,13 @@ def random():
 
     # TODO: Make 'params' dict with query term and API key
     params = {
-        "query": query,
         "apikey": api_consumer_key,
-        "link":'https://api.tenor.com/v1/',
-        "lmt":9
+        "q": query,
+        "limit":9
     }
+
     # TODO: Make an API call to Tenor using the 'requests' library
-    r = requests.get(
-        f"{params['link']}random?q={params['query']}&key={params['apikey']}&limit={params['lmt']}")
+    r = requests.get("https://api.tenor.com/v1/random?", params=params)
 
     if r.status_code == 200:
         gifs = json.loads(r.content)['results']
